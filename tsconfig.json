@@ -1,0 +1,32 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es5",
+    "types": ["jest", "cypress"],
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2018", "dom"],
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    // "strictNullChecks": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "paths": {
+      "@app/*": ["app/*"],
+      "@env/*": ["environments/*"],
+      "@modules/*": ["app/modules/*"],
+      "@core/*": ["app/core/*"],
+      "@services/*": ["app/services/*"],
+      "@shared/*": ["app/shared/*"],
+      "@test/*": ["test/*"]
+    }
+  }
+}

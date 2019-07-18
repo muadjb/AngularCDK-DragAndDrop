@@ -1,0 +1,8 @@
+<button
+  type="button"
+  class="btn "
+  [ngClass]="{ 'btn-secondary': !isActive, 'btn-primary': isActive }"
+  (click)="toggle()"
+>
+  {{ buttonText }}
+</button>

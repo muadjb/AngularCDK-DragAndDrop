@@ -1,0 +1,25 @@
+<table class="table table-bordered table-hover">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col" *ngFor="let col of columns">
+        {{ col.header }}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let r of (recentAssignments$ | async)" (click)="onRowClick(r.referralId)">
+      <ng-container *ngFor="let col of columns">
+        <ng-container [ngSwitch]="true">
+          <ng-container
+            *ngSwitchCase="col.field === 'intakeDate' || col.field === 'assignmentDate'"
+          >
+            <td>{{ r[col.field] | date: 'MM/dd/yyyy HH:mm' }}</td>
+          </ng-container>
+          <ng-container *ngSwitchDefault>
+            <td>{{ r[col.field] }}</td>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+    </tr>
+  </tbody>
+</table>

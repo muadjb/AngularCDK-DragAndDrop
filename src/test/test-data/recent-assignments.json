@@ -1,0 +1,72 @@
+[
+  {
+    "referralId": 1351,
+    "intakeDate": "2019-06-26T15:29:09.753",
+    "referralTypeID": "IR",
+    "cwsRefNumber": "7777-7778-7898-7898975",
+    "cwsRefName": "Doe, Jane",
+    "unKnownMother": true,
+    "incidentZipCode": "95615",
+    "regionDescription": null,
+    "specialSkill": "",
+    "specialRequest": "",
+    "assignedTo": "",
+    "assignmentDate": ""
+  },
+  {
+    "referralId": 1357,
+    "intakeDate": "2019-07-12T16:23:04.503",
+    "referralTypeID": "IR",
+    "cwsRefNumber": "7984-8456-5487-9456445",
+    "cwsRefName": "Doe, Jane",
+    "unKnownMother": true,
+    "incidentZipCode": "95611",
+    "regionDescription": null,
+    "specialSkill": "",
+    "specialRequest": "TEST, NEW_1 ",
+    "assignedTo": "",
+    "assignmentDate": ""
+  },
+  {
+    "referralId": 1352,
+    "intakeDate": "2019-07-05T00:53:18.22",
+    "referralTypeID": "10Day",
+    "cwsRefNumber": "1234-5678-9409-0984094",
+    "cwsRefName": "Doe, Jane",
+    "unKnownMother": true,
+    "incidentZipCode": "95826",
+    "regionDescription": null,
+    "specialSkill": "Spanish",
+    "specialRequest": "BOMP , CSEC ",
+    "assignedTo": "",
+    "assignmentDate": ""
+  },
+  {
+    "referralId": 1354,
+    "intakeDate": "2019-07-12T12:07:15.26",
+    "referralTypeID": "10Day",
+    "cwsRefNumber": "9845-1324-9875-4651232",
+    "cwsRefName": "Doe, Jane",
+    "unKnownMother": true,
+    "incidentZipCode": "95608",
+    "regionDescription": null,
+    "specialSkill": "",
+    "specialRequest": "BLAPPP ",
+    "assignedTo": "",
+    "assignmentDate": ""
+  },
+  {
+    "referralId": 1356,
+    "intakeDate": "2019-07-13T00:47:46.353",
+    "referralTypeID": "IR",
+    "cwsRefNumber": "5165-4894-6515-4961323",
+    "cwsRefName": "Doe, Jane",
+    "unKnownMother": true,
+    "incidentZipCode": "95611",
+    "regionDescription": null,
+    "specialSkill": "",
+    "specialRequest": "",
+    "assignedTo": "",
+    "assignmentDate": ""
+  }
+]

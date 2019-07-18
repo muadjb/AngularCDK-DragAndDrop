@@ -1,0 +1,13 @@
+<div class="pt-2 mx-4 d-flex justify-content-between">
+  <h3>Assign Tasks</h3>
+  <button class="btn btn-primary" (click)="onSave()">Save</button>
+</div>
+
+<div class="row" cdkDropListGroup [cdkDropListGroupDisabled]="showingRecentAssignments">
+  <div class="col">
+    <ams-unassigned-referrals></ams-unassigned-referrals>
+  </div>
+  <div class="col" [class.dim]="showingRecentAssignments">
+    <ams-employees-to-assign></ams-employees-to-assign>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<span class="pointer" (click)="toggleExpansion()">
+  <i class="far fa-bars"></i>
+</span>
+<div id="checkboxes" *ngIf="isExpanded">
+  <label *ngFor="let col of columns; let i = index" for="{{ col.field + i }}">
+    <input
+      type="checkbox"
+      [(ngModel)]="inputIsChecked[i]"
+      [ngModelOptions]="{ standalone: true }"
+      id="{{ col.field + i }}"
+      class="mx-1"
+      (change)="onChange(col.field, $event.target.checked)"
+    />
+    {{ col.header }}
+  </label>
+</div>

@@ -1,0 +1,94 @@
+<div id="ur" class="d-flex flex-column ml-4">
+  <h6>{{ showRecentClicked ? 'Recent Assignments' : 'Unassigned Tasks' }}</h6>
+
+  <div class="d-flex mb-1">
+    <ng-container *ngIf="!showRecentClicked">
+      <div class="form-check form-check-inline">
+        <input
+          id="irRadio"
+          class="form-check-input pointer"
+          type="radio"
+          name="r"
+          checked
+          value="IR"
+          (change)="onIR()"
+        />
+        <label class="form-check-label pointer" for="irRadio">IR</label>
+      </div>
+
+      <div class="form-check form-check-inline">
+        <input
+          id="10DayRadio"
+          class="form-check-input pointer"
+          type="radio"
+          name="r"
+          (change)="on10Day()"
+        />
+        <label class="form-check-label pointer" for="10DayRadio">10 Day</label>
+      </div>
+    </ng-container>
+
+    <ams-toggle-button
+      class="ml-auto"
+      activeText="Show Unassigned Referrals"
+      inActiveText="Show Recent Assignments"
+      (toggled)="onShowRecent($event)"
+    ></ams-toggle-button>
+
+    <ams-hide-columns-dropdown
+      class="ml-2 align-self-center"
+      [columns]="columnsMaster"
+      (changed)="onHideColumnChange($event)"
+      (init)="onHideColumnInit($event)"
+    ></ams-hide-columns-dropdown>
+  </div>
+
+  <ams-recent-assignments *ngIf="showRecentClicked; else unassigned"></ams-recent-assignments>
+
+  <ng-template #unassigned>
+    <table class="table table-bordered table-hover">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col" *ngFor="let col of displayedColumns">
+            {{ col.header }}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let r of (filteredReferrals$ | async)"
+          cdkDropList
+          [cdkDropListData]="r"
+          (cdkDropListDropped)="onDropOnTable($event)"
+          cdkDrag
+          [cdkDragDisabled]="r.assignedTo === null"
+        >
+          <span *cdkDragPreview>{{ r.assignedTo }}</span>
+          <span *cdkDragPlaceholder></span>
+          <ng-container *ngFor="let col of displayedColumns">
+            <ng-container [ngSwitch]="true">
+              <ng-container
+                *ngSwitchCase="col.field === 'intakeDate' || col.field === 'assignmentDate'"
+              >
+                <td>{{ r[col.field] | date: 'MM/dd/yyyy HH:mm' }}</td>
+              </ng-container>
+              <ng-container *ngSwitchDefault>
+                <td>{{ r[col.field] }}</td>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </tr>
+      </tbody>
+    </table>
+  </ng-template>
+
+  <div
+    *ngIf="!showRecentClicked"
+    class="remove-employee-zone"
+    cdkDropList
+    (cdkDropListDropped)="onDropOnRemoveZone($event.previousContainer.data)"
+  >
+    <i class="fa fa-trash-alt mb-3"> </i>
+    <span>Drag worker here to un-assign from referral.</span>
+  </div>
+</div>

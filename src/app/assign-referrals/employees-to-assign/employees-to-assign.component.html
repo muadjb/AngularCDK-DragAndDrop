@@ -1,0 +1,95 @@
+<div class="sw">
+  <h6>Social Workers</h6>
+
+  <div class="d-flex align-items-center mb-1">
+    <select class="form-control group-dropdown" (change)="onGroupDropdown($event.target.value)">
+      <option *ngFor="let group of (groups$ | async)" value="{{ group }}">{{ group }}</option>
+    </select>
+
+    <input
+      *ngIf="!is10DayType"
+      class="checkbox-input"
+      type="checkbox"
+      id="showOff"
+      (change)="onShowAll($event.target.checked)"
+    />
+    <label *ngIf="!is10DayType" class="checkbox-label" for="showOff">Show All</label>
+
+    <input
+      *ngIf="is10DayType"
+      class="checkbox-input"
+      type="checkbox"
+      id="present"
+      (change)="onShowNotAvailable($event.target.checked)"
+    />
+    <label *ngIf="is10DayType" class="checkbox-label" for="present">NOT Available 3/5 days</label>
+
+    <input
+      *ngIf="is10DayType"
+      class="checkbox-input"
+      type="checkbox"
+      id="avgFTE"
+      (change)="onShowAboveAverageReferralsPerFTE($event.target.checked)"
+    />
+    <label *ngIf="is10DayType" class="checkbox-label" for="avgFTE">Refs/FTE above average</label>
+
+    <label class="ml-5 my-0 nowrap" for="search">Name</label>
+    <input
+      id="search"
+      type="search"
+      class="form-control ml-1"
+      (input)="onSearch($event.target.value)"
+    />
+
+    <ams-hide-columns-dropdown
+      class="ml-2 align-self-center"
+      [columns]="columnsForHideDropdown"
+      (changed)="onHideColumnChange($event)"
+      (init)="onHideColumnInit($event)"
+    ></ams-hide-columns-dropdown>
+  </div>
+
+  <table class="table table-bordered table-hover">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col" *ngFor="let col of displayedColumns">{{ col.header }}</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <ng-container *ngFor="let group of (filteredGroups$ | async)">
+        <tr>
+          <td colspan="15" class="group">
+            {{ group.specialtyCode || 'No Group' }} - {{ group.employees.length }}
+          </td>
+        </tr>
+
+        <tr
+          *ngFor="let e of group.employees"
+          cdkDropList
+          (cdkDropListDropped)="onDrop($event)"
+          cdkDrag
+          [cdkDragData]="e"
+          [cdkDragDisabled]="isDisabled"
+          [ngClass]="{ irToday: e.todaysIRs > 0 && !is10DayType }"
+        >
+          <span *cdkDragPreview>{{ e.socialWorker }}</span>
+          <span class="text-success" *cdkDragPlaceholder></span>
+          <ng-container *ngFor="let col of displayedColumns">
+            <ng-container [ngSwitch]="col.field">
+              <ng-container *ngSwitchCase="'hadIRYesterday'">
+                <td>{{ e[col.field] ? 'Yes' : 'No' }}</td>
+              </ng-container>
+              <ng-container *ngSwitchCase="'irPercent'">
+                <td>{{ e[col.field] | percent }}</td>
+              </ng-container>
+              <ng-container *ngSwitchDefault>
+                <td>{{ e[col.field] }}</td>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>

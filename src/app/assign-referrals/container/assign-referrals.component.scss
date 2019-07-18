@@ -1,0 +1,17 @@
+:host {
+  user-select: none;
+}
+
+.remove-employee-zone {
+  background-color: #fff5f5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.dim {
+  opacity: 0.3;
+  max-width: 30%;
+}

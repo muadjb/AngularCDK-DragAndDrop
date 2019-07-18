@@ -1,0 +1,20 @@
+#checkboxes {
+  border: 1px #dadada solid;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  margin-right: 14px;
+  background-color: beige;
+  z-index: 11;
+  opacity: 0.9;
+  left: auto;
+  right: 0;
+
+  label {
+    padding-right: 0.75em;
+
+    &:hover {
+      background-color: #abe0ad;
+    }
+  }
+}
