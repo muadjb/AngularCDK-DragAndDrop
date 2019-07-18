@@ -59,7 +59,3 @@ typings/
 
 # exclude the dist folder
 dist/
-src/environments/environment.ts
-src/environments/environment.prod.ts
-src/app/modules/referral/components/new-referral-form/spike/check-existing-caregiver.ts
-src/app/modules/referral/components/new-referral-form/spike/check-existing-caregiver.spec.ts
